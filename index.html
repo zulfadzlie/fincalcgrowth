@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+    <link rel="icon" href="logo.ico">
+    <title>Financial Calculator</title>
+</head>
+
+<body>
+    <div class="container">
+        <form id="radio-buttons" class="radio-buttons">
+            <input type="radio" id="radio-PMT" class="radio-button" name="radio-buttons" value="PMT" onclick="radioSelected('PMT')" checked = "checked">
+            <label for="radio-PMT" class = "radio-label">PMT</label>
+    
+            <input type="radio" id="radio-PV" class="radio-button" name="radio-buttons" value="PV" onclick="radioSelected('PV')">
+            <label for="radio-PV" class = "radio-label">PV</label>
+    
+            <input type="radio" id="radio-FV" class="radio-button" name="radio-buttons" value="FV" onclick="radioSelected('FV')">
+            <label for="radio-FV" class = "radio-label">FV</label>
+        </form>
+    
+        <div class="inputs">
+    
+            <div id="input-PMT" class="hidden">
+                <label class="label-input" for="input-PMT">PMT</label>
+                <input id="input-value-PMT" class="input" type="number" name="input-PMT" value=100>  
+            </div>
+    
+            <div id="input-RATE">
+                <label class="label-input" for="input-RATE">RATE</label>
+                <input id="input-value-RATE" class="input" type="number" name="input-RATE" value=10>
+            </div>
+
+            <div id="input-GROW">
+                <label class="label-input" for="input-GROW">GROW</label>
+                <input id="input-value-GROW" class="input" type="number" name="input-GROW" value=5>
+            </div>
+    
+            <div id="input-NPER">
+                <label class="label-input" for="input-NPER">NPER</label>
+                <input id="input-value-NPER" class="input" type="number" name="input-NPER" value=10>
+            </div>
+    
+            <div id="input-PV">
+                <label class="label-input" for="input-PV">PV</label>
+                <input id="input-value-PV" class="input" type="number" name="input-PV" value=-1000>
+            </div>
+    
+            <div id="input-FV">
+                <label class="label-input" for="input-FV">FV</label>
+                <input id="input-value-FV" class="input" type="number" name="input-FV" value=1000>
+            </div>
+            
+        </div>
+
+        <div class="radio-buttons">
+            <input type="radio" id="radio-BEGIN" class="radio-button" name="radio-buttons-2" value="BEGIN" onclick="" checked = "checked">
+            <label for="radio-BEGIN" class = "radio-label">BEGIN</label>
+            
+            <input type="radio" id="radio-END" class="radio-button" name="radio-buttons-2" value="END" onclick="">
+            <label for="radio-END" class = "radio-label">END</label>
+        </div>
+
+        <button id="button-calculate" class="button-calculate" onclick="calculate()">CALCULATE PMT</button>
+    
+        <p id="answer"></p>
+    </div>
+
+
+   
+    <script src="main.js"></script>
+</body>
+
+</html>
