@@ -26,42 +26,38 @@ function showAllInputs() {
     document.getElementById("input-FV").classList.remove("hidden")
 }
 
-function calculateRGFactor() {
-    let calculated_factor = (Math.pow((1 + input_GROW/100) / (1 + input_RATE/100), input_NPER) - 1) / (input_RATE/100 - input_GROW/100)
-    return calculated_factor
-}
-
-function calculateRFactor() {
-    let calculated_factor = 1 / Math.pow((1 + input_RATE/100), 1)
-    return calculated_factor
+function calculateFactor() {
+    let gr = (1 + input_GROW/100) / (1 + input_RATE/100)
+    let f = (1 - Math.pow(gr, input_NPER)) / (1 - gr)
+    return f
 }
 
 
 function calculatePMT() {
-    let calculated_PMT = (input_PV + input_FV * Math.pow(calculateRFactor(), input_NPER)) / calculateRGFactor()
+    let calculated_PMT = (input_PV + input_FV / Math.pow(1 + input_RATE/100, input_NPER)) * (1 + input_RATE/100) / calculateFactor()
 
     if (begin_or_end === "BEGIN") {
-        calculated_PMT = (input_PV + input_FV * Math.pow(calculateRFactor(), input_NPER - 1)) / calculateRGFactor() * calculateRFactor()
+        calculated_PMT = (input_PV + input_FV / Math.pow(1 + input_RATE/100, input_NPER)) / calculateFactor()
     }
 
     return calculated_PMT
 }
 
 function calculatePV() {
-    let calculated_PV = input_PMT * calculateRGFactor() - input_FV * Math.pow(calculateRFactor(), input_NPER)
+    let calculated_PV = - input_PMT / (1 + input_RATE/100) * calculateFactor() - input_FV / Math.pow(1 + input_RATE/100, input_NPER)
 
     if (begin_or_end === "BEGIN") {
-        calculated_PV = calculated_PV / calculateRFactor()
+        calculated_PV = - input_PMT * calculateFactor() - input_FV / Math.pow(1 + input_RATE/100, input_NPER)
     }
 
     return calculated_PV
 }
 
 function calculateFV() {  
-    let calculated_FV = (input_PMT * calculateRGFactor() - input_PV) / Math.pow(calculateRFactor(), input_NPER)
+    let calculated_FV = (input_PV + input_PMT * calculateFactor() / (1 + input_RATE/100)) * Math.pow(1 + input_RATE/100, input_NPER)
 
     if (begin_or_end === "BEGIN") {
-        calculated_FV = (input_PMT * calculateRGFactor() / calculateRFactor() - input_PV) / Math.pow(calculateRFactor(), input_NPER - 1)
+        calculated_FV = (input_PV + input_PMT * calculateFactor()) * Math.pow(1 + input_RATE/100, input_NPER)
     }
 
     return calculated_FV
