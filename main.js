@@ -34,10 +34,10 @@ function calculateFactor() {
 
 
 function calculatePMT() {
-    let calculated_PMT = (input_PV + input_FV / Math.pow(1 + input_RATE/100, input_NPER)) * (1 + input_RATE/100) / calculateFactor()
+    let calculated_PMT = - (input_PV + input_FV / Math.pow(1 + input_RATE/100, input_NPER)) * (1 + input_RATE/100) / calculateFactor()
 
     if (begin_or_end === "BEGIN") {
-        calculated_PMT = (input_PV + input_FV / Math.pow(1 + input_RATE/100, input_NPER)) / calculateFactor()
+        calculated_PMT = - (input_PV + input_FV / Math.pow(1 + input_RATE/100, input_NPER)) / calculateFactor()
     }
 
     return calculated_PMT
@@ -54,10 +54,10 @@ function calculatePV() {
 }
 
 function calculateFV() {  
-    let calculated_FV = (input_PV + input_PMT * calculateFactor() / (1 + input_RATE/100)) * Math.pow(1 + input_RATE/100, input_NPER)
+    let calculated_FV = - (input_PV + input_PMT * calculateFactor() / (1 + input_RATE/100)) * Math.pow(1 + input_RATE/100, input_NPER)
 
     if (begin_or_end === "BEGIN") {
-        calculated_FV = (input_PV + input_PMT * calculateFactor()) * Math.pow(1 + input_RATE/100, input_NPER)
+        calculated_FV = - (input_PV + input_PMT * calculateFactor()) * Math.pow(1 + input_RATE/100, input_NPER)
     }
 
     return calculated_FV
